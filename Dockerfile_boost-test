@@ -1,5 +1,5 @@
 # Get the base Ubuntu image from Docker Hub
-FROM c_plus_plus_with_boost:latest
+FROM c-plus-plus-with-boost:latest
 MAINTAINER Jason Hui <huilapman@gmail.com>
 
 ARG BOOST_VERSION=1_69_0
