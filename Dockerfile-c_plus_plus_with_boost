@@ -1,0 +1,38 @@
+FROM ubuntu:latest
+MAINTAINER Jason Hui <huilapman@gmail.com>
+
+ARG BOOST_VERSION=1_69_0
+
+#ENV http_proxy http://192.168.195.153:3128
+#ENV https_proxy http://192.168.195.153:3128
+
+# Update apps on the base image
+#RUN apt-get -y update
+RUN apt-get -y update && apt-get install -y --no-install-recommends apt-utils
+
+#RUN apt-get -y install clang
+RUN apt-get -y install git
+RUN apt-get -y install g++
+RUN apt-get -y install make
+RUN apt-get -y install curl
+RUN apt-get -y install wget
+RUN apt-get -y install python3
+
+#RUN cd /home && wget http://downloads.sourceforge.net/project/boost/boost/${BOOST_VERSION}/boost_${BOOST_VERSION}.tar.gz \
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /home
+
+COPY boost_${BOOST_VERSION}.tar.gz /home
+
+RUN cd /home
+
+RUN tar xfz boost_${BOOST_VERSION}.tar.gz \
+  && rm boost_${BOOST_VERSION}.tar.gz \
+  && cd boost_${BOOST_VERSION} \
+  && ./bootstrap.sh --prefix=/usr/local --with-libraries=program_options \
+  && ./b2 install \
+  && cd /home \
+  && rm -rf boost_${BOOST_VERSION}
+
