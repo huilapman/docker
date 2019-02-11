@@ -133,3 +133,11 @@
 
     root@6616ea04a9c3:/home#
 
+
+#### Jupyter in Docker
+	# create a directory
+	mkdir work
+	# give the default jovyan (uid=1000) user ownership
+	sudo chown 1000 work
+	# start the container with the host work folder mounted
+	docker run -it --rm -p 18888:8888 -v `pwd`/work:/home/jovyan/work jupyter/datascience-notebook
