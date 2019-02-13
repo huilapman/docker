@@ -19,7 +19,9 @@ RUN apt-get -y install wget
 RUN apt-get -y install python3
 RUN apt-get -y install vim
 RUN apt-get -y install tmux
-
+RUN apt-get -y install openssl 
+RUN apt-get -y install libssl-dev
+RUN apt-get -y install ninja-build
 
 #RUN cd /home && wget http://downloads.sourceforge.net/project/boost/boost/${BOOST_VERSION}/boost_${BOOST_VERSION}.tar.gz \
 
